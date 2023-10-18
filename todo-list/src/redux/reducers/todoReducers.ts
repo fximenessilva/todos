@@ -1,70 +1,58 @@
-import { Reducer, AnyAction } from "redux";
-import { v4 as uuidv4 } from "uuid";
+import { Reducer, AnyAction } from 'redux';
+import { v4 as uuidv4 } from 'uuid';
 
-import { Todo } from "../../types/Todo";
-import { NAMESPACES } from "../../constants";
-import { setter, getter } from "../../utils/localStorageHelpers";
-import ActionTypes from "../../types/ActionTypes";
+import { Todo } from '../../types/Todo';
+import { NAMESPACES } from '../../constants';
+import { setter, getter } from '../../utils';
+import ActionTypes from '../../types/ActionTypes';
 
-const todosFromStorage = getter(NAMESPACES.todos);
+const todos = getter(NAMESPACES.todos) || [];
 
-const initialState: Todo[] = todosFromStorage
-  ? todosFromStorage
-  : [
-      {
-        id: uuidv4(),
-        title: "Lavar roupa",
-        completed: false,
-        backgroundColor: "#ccc",
-      },
-      {
-        id: uuidv4(),
-        title: "Fazer tpc",
-        completed: false,
-        backgroundColor: "#eee",
-      },
+const initialState = {
+  todos,
+  colors: [],
+  loading: false,
+  error: null,
+};
 
-      {
-        id: uuidv4(),
-        title: "Fazer jantar",
-        completed: true,
-        backgroundColor: "#fff",
-      },
-    ];
+const setNewState = (state: any, todos: Todo[]) => {
+  const newState = { ...state, todos };
+  setter(NAMESPACES.todos, todos);
+  return newState;
+};
 
-const setNewState = (state: Todo[]) => setter(NAMESPACES.todos, state);
-
-const todoReducer: Reducer<Todo[], AnyAction> = (
-  state = initialState,
-  action
-) => {
+const todoReducer: Reducer<any, AnyAction> = (state = initialState, action) => {
   switch (action.type) {
     case ActionTypes.ADD_TODO:
       const newTodo = {
         id: uuidv4(),
-        title: action.payload.title,
-        completed: action.payload.completed,
-        backgroundColor: action.payload.backgroundColor,
+        ...action.payload,
       };
-      const newStateAdd = [...state, newTodo];
-      setNewState(newStateAdd);
-      return newStateAdd;
+      const newTodos = [...state.todos, newTodo];
+      return setNewState({ ...state, todos: newTodos }, newTodos);
 
     case ActionTypes.TOGGLE_TODO:
-      const newStateToggle = state.map((todo) =>
+      const updatedTodos = state.todos.map((todo: Todo) =>
         todo.id === action.payload
           ? { ...todo, completed: !todo.completed }
-          : todo
+          : todo,
       );
-      setNewState(newStateToggle);
-
-      return newStateToggle;
+      return setNewState({ ...state, todos: updatedTodos }, updatedTodos);
 
     case ActionTypes.REMOVE_TODO:
-      const newStateRemove = state.filter((todo) => todo.id !== action.payload);
-      setNewState(newStateRemove);
+      const filteredTodos = state.todos.filter(
+        (todo: Todo) => todo.id !== action.payload,
+      );
+      return setNewState({ ...state, todos: filteredTodos }, filteredTodos);
 
-      return newStateRemove;
+    case ActionTypes.FETCH_COLORS_REQUEST:
+      return { ...state, loading: true, error: null };
+
+    case ActionTypes.FETCH_COLORS_SUCCESS:
+      return { ...state, colors: action.payload, loading: false, error: null };
+
+    case ActionTypes.FETCH_COLORS_FAILURE:
+      return { ...state, loading: false, error: action.payload };
 
     default:
       return state;

@@ -1,0 +1,47 @@
+@import './variables.css';
+
+@keyframes blendBackground {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  animation: blendBackground 30s linear infinite;
+  background: linear-gradient(
+    45deg,
+    rgba(255, 235, 247, 0.5),
+    rgba(235, 247, 255, 0.5),
+    rgba(222, 247, 232, 0.5),
+    rgba(235, 247, 255, 0.5),
+    rgba(255, 241, 168, 0.5),
+    rgba(247, 207, 182, 0.5)
+  );
+
+  background-size: 300% 300%;
+  font-family: 'Quicksand', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
+    'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+label {
+  margin: 0.25rem 0;
+}
+
+.error-msg {
+  color: var(--error-color);
+  font-size: var(--font-size-xs);
+}

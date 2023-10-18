@@ -1,6 +1,7 @@
-import React from "react";
+import React from 'react';
 
-import styles from "./item.module.scss";
+import { isLightOrDarkHex } from '../../../utils';
+import styles from './item.module.scss';
 
 interface RootProps {
   children: React.ReactNode;
@@ -8,8 +9,13 @@ interface RootProps {
 }
 
 const Root: React.FC<RootProps> = ({ children, backgroundColor }) => {
+  const isDarkOrLight = isLightOrDarkHex(backgroundColor);
+
   return (
-    <div style={{ backgroundColor }} className={styles.wrapper}>
+    <div
+      style={{ backgroundColor: `#${backgroundColor}` }}
+      className={`${styles.wrapper} ${styles[`${isDarkOrLight}-wrapper`]}`}
+    >
       {children}
     </div>
   );

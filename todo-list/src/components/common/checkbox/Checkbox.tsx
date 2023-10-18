@@ -1,31 +1,32 @@
-import React, { useState } from "react";
-import styles from "./item.module.scss";
+import React from 'react';
+import styles from './checkbox.module.scss';
 
 interface CheckboxProps {
   label: string;
-  id: string;
-  checked: boolean;
-  onChange: (id: string) => void;
+  checked: boolean | undefined;
+  onChange: any;
+  name?: string;
+  value?: any;
 }
 
 const Checkbox: React.FC<CheckboxProps> = ({
   label,
   checked,
   onChange,
-  id,
+  name,
+  value,
 }) => {
-  const handleChange = () => {
-    onChange(id);
-  };
-
   return (
     <div className={styles.right}>
+      <span className={styles.label}>{label}</span>
       <label className={styles.checkboxLabel}>
         <input
           type="checkbox"
           className={styles.checkboxInput}
           checked={checked}
-          onChange={handleChange}
+          onChange={onChange}
+          name={name || ''}
+          value={value}
         />
         <span className={styles.checkboxCustom}>
           {checked && (
@@ -39,7 +40,6 @@ const Checkbox: React.FC<CheckboxProps> = ({
             </svg>
           )}
         </span>
-        {label}
       </label>
     </div>
   );

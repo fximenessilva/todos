@@ -1,5 +1,3 @@
-@import "../../../styles/variables";
-
 .wrapper {
   padding: 1rem 0.5rem;
   border: 1px solid var(--light-grey);
@@ -7,6 +5,32 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.light-wrapper {
+  :global {
+    span {
+      color: var(--text-color);
+    }
+    label {
+      span {
+        border-color: var(--text-color);
+      }
+    }
+  }
+}
+
+.dark-wrapper {
+  :global {
+    span {
+      color: var(--light-grey);
+    }
+    label {
+      span {
+        border-color: var(--light-grey);
+      }
+    }
+  }
 }
 
 .left {
@@ -23,37 +47,4 @@
   border-radius: var(--border-radius);
   background-color: var(--transparent);
   padding: 0.35rem;
-}
-
-.checkboxLabel {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  font-family: var(--font-family);
-  font-size: var(--font-size);
-  color: var(--text-color);
-}
-
-.checkboxInput {
-  display: none;
-}
-
-.checkboxCustom {
-  width: 14px;
-  height: 14px;
-  border: 1px solid var(--text-color);
-  border-radius: 2px;
-  margin-right: var(--spacing-unit);
-  background: var(--transparent);
-  transition: background 0.3s, border-color 0.3s;
-}
-
-.checkboxInput:checked + .checkboxCustom {
-  background: var(--light-grey);
-}
-
-.svg {
-  position: relative;
-  bottom: 1px;
-  left: 1px;
 }

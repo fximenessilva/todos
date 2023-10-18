@@ -1,0 +1,38 @@
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+  color: var(--text-color);
+}
+
+.label {
+  font-size: var(--font-size);
+}
+
+.checkboxInput {
+  display: none;
+}
+
+.checkboxCustom {
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--light-grey);
+  border-radius: 2px;
+  margin-right: var(--spacing-unit);
+  background: var(--transparent);
+  transition:
+    background 0.3s,
+    border-color 0.3s;
+}
+
+.checkboxInput:checked + .checkboxCustom {
+  background: var(--light-grey);
+}
+
+.svg {
+  position: relative;
+  bottom: 1px;
+  left: 1px;
+}

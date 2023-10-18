@@ -1,5 +1,3 @@
-@import "../../../styles/variables";
-
 .button {
   cursor: pointer;
   border-radius: var(--border-radius);
@@ -7,11 +5,21 @@
   width: 100%;
   padding: 0.5rem;
   margin: 1rem 0;
-  background-color: var(--background-color);
+  background-color: var(--white-color);
   transition: background-color 0.3s;
   line-height: var(--line-height);
+  border: 1px solid var(--light-grey);
 }
 
 .button:hover {
-  background-color: var(--background-color-hover);
+  background-color: var(--background-color);
+}
+
+.variant-danger {
+  background-color: var(--error-color);
+  color: var(--white-color);
+}
+
+.variant-danger:hover {
+  background-color: var(--error-color-hover);
 }
