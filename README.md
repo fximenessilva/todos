@@ -31,6 +31,6 @@ The app's architecture promotes modularity, reusability, and maintainability of 
 To install the required packages, use the package manager of your choice. Here's an example using npm:
 
 ```bash
-cd todo-app
+cd todo-list
 npm install
 ```
