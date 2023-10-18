@@ -1,0 +1,17 @@
+@import "../../../styles/variables";
+
+.button {
+  cursor: pointer;
+  border-radius: var(--border-radius);
+  border: none;
+  width: 100%;
+  padding: 0.5rem;
+  margin: 1rem 0;
+  background-color: var(--background-color);
+  transition: background-color 0.3s;
+  line-height: var(--line-height);
+}
+
+.button:hover {
+  background-color: var(--background-color-hover);
+}
