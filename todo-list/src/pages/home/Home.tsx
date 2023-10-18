@@ -39,7 +39,7 @@ const Home = () => {
 
   useEffect(() => {
     toast.error(error);
-  }, [error, toast]);
+  }, [error]);
 
   return (
     <div className={styles.wrapper}>
