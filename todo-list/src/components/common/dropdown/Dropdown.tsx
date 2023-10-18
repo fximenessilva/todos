@@ -30,7 +30,7 @@ const Dropdown: React.FC<DropdownProps> = ({
 
   useEffect(() => {
     setFieldTouched(name, isOpen);
-  }, [isOpen]);
+  }, [isOpen, name, setFieldTouched]);
 
   useEffect(() => {
     setFieldTouched(name, isOpen);

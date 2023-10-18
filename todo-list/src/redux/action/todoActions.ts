@@ -25,7 +25,7 @@ export const removeTodo = (id: string) => ({
 });
 
 export const fetchColors = () => {
-  return async (dispatch: any) => {
+  return async (dispatch: Dispatch) => {
     dispatch({ type: ActionTypes.FETCH_COLORS_REQUEST });
 
     try {

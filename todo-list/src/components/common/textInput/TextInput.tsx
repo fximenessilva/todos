@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FocusEvent, useState } from 'react';
+import React, { ChangeEvent, FocusEvent } from 'react';
 
 import styles from './textInput.module.scss';
 
@@ -25,14 +25,10 @@ const TextInput: React.FC<TextInputProps> = ({
   name,
   onBlur,
 }) => {
-  const [focused, setFocused] = useState(false);
-
   const onFocusHandler = (e: FocusEvent<HTMLInputElement, Element>) => {
-    setFocused(true);
     onFocus && onFocus(e);
   };
   const onBlurHandler = (e: FocusEvent<HTMLInputElement, Element>) => {
-    setFocused(false);
     onBlur && onBlur(e);
   };
 
