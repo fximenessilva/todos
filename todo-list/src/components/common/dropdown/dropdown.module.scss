@@ -37,7 +37,8 @@
   margin-top: 0.15rem;
 }
 
-.dropdown-menu-open {
+.dropdown-menu-open,
+.dropdown-no-options {
   display: block;
   z-index: 10;
 }
@@ -61,4 +62,8 @@
   &:hover {
     background-color: var(--light-grey);
   }
+}
+
+.no-option {
+  color: var(--light-grey);
 }

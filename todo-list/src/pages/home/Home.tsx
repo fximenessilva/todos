@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 
 import { fetchColors, removeTodo } from '../../redux/action/todoActions';
 import { Todo } from '../../types/Todo';
@@ -13,7 +14,7 @@ const Home = () => {
 
   const state = useSelector((state: any) => state.todos);
 
-  const { todos } = state;
+  const { todos, error } = state;
 
   const todosList = todos.filter((el: Todo) => !el.completed);
 
@@ -35,6 +36,10 @@ const Home = () => {
   useEffect(() => {
     dispatch(fetchColors() as any);
   }, [dispatch]);
+
+  useEffect(() => {
+    toast.error(error);
+  }, [error, toast]);
 
   return (
     <div className={styles.wrapper}>

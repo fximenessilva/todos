@@ -82,20 +82,28 @@ const Dropdown: React.FC<DropdownProps> = ({
               isOpen ? styles['dropdown-menu-open'] : ''
             }`}
           >
-            {options.map((option, i) => (
-              <div
-                key={i}
-                onClick={() => handleSelect(option)}
-                className={styles['dropdown-item']}
-                data-name={name}
-              >
+            {options.length ? (
+              options.map((option, i) => (
                 <div
-                  className={styles.color}
-                  style={{ backgroundColor: `#${option}` }}
-                />
-                <span>{option}</span>
+                  key={i}
+                  onClick={() => handleSelect(option)}
+                  className={styles['dropdown-item']}
+                  data-name={name}
+                >
+                  <div
+                    className={styles.color}
+                    style={{ backgroundColor: `#${option}` }}
+                  />
+                  <span>{option}</span>
+                </div>
+              ))
+            ) : (
+              <div
+                className={`${styles['dropdown-item']} ${styles['no-option']}`}
+              >
+                No options available
               </div>
-            ))}
+            )}
           </div>
         </div>
       </div>
